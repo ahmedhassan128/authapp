@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "900813503297",
+    "project_id": "login-app-efb7d",
+    "storage_bucket": "login-app-efb7d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900813503297:android:8154f31c9f73f30c35ffc0",
+        "android_client_info": {
+          "package_name": "com.example.authapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJv2l9S8crImJnDYyn9Ljec0_RPLw8VLY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900813503297:android:f85594da85ee4ee735ffc0",
+        "android_client_info": {
+          "package_name": "com.example.loginapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJv2l9S8crImJnDYyn9Ljec0_RPLw8VLY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
