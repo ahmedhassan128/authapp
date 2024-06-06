@@ -13,6 +13,7 @@ abstract class Routes {
   static const HIGH_TRUST = _Paths.HIGH_TRUST;
   static const MEDIUM_TRUST = _Paths.MEDIUM_TRUST;
   static const LOW_TRUST = _Paths.LOW_TRUST;
+  static const SPLASH = _Paths.SPLASH;
 }
 
 abstract class _Paths {
@@ -27,4 +28,5 @@ abstract class _Paths {
   static const HIGH_TRUST = '/high-trust';
   static const MEDIUM_TRUST = '/medium-trust';
   static const LOW_TRUST = '/low-trust';
+  static const SPLASH = '/splash';
 }

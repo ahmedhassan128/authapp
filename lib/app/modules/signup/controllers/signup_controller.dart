@@ -1,11 +1,8 @@
-import 'package:authapp/app/modules/home/views/home_view.dart';
-import 'package:authapp/app/modules/login/views/login_view.dart';
 import 'package:authapp/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class SignupController extends GetxController {
   FirebaseAuth auth = FirebaseAuth.instance;
@@ -24,10 +21,6 @@ class SignupController extends GetxController {
   var name = '';
   var password = '';
   var confirmpassword = '';
-  @override
-  void onInit() {
-    super.onInit();
-  }
 
   void clear() {
     emailController.clear();
@@ -36,6 +29,8 @@ class SignupController extends GetxController {
     conformpasswordController.clear();
   }
 
+// for validation of textfield when user inter register button show error bellow
+// textfield
   validatedname(String value) {
     if (value.isEmpty) {
       return "Please enter full name.";
@@ -62,6 +57,9 @@ class SignupController extends GetxController {
     return null;
   }
 
+  /// confirmpassword textfield compare password of password textfield
+  /// // if confirm password match with password is ok otherwise show error
+  /// //Password do not match
   validateconfirmpassword(String password, String confirmpassword) {
     if (confirmpassword.isEmpty) {
       return "Confirm password can not be empty";
@@ -72,6 +70,8 @@ class SignupController extends GetxController {
     }
   }
 
+  // code for register user on firebase
+  // this simple a code
   Future<void> register() async {
     try {
       isLoading(true);
@@ -93,7 +93,7 @@ class SignupController extends GetxController {
         'password': password,
         'confirmpassword': confirmpassword,
       });
-
+//// clear method is called after save data in database textfield will be empty
       clear();
       Get.toNamed(Routes.LOGIN);
     } catch (e) {

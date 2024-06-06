@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
+//////// custom class for button when need button only use custome button class
+///// button decoration , color is set in custom class not need to set 
+///// again decoration and color of button where you want to use  button 
 class PrimaryButton extends StatelessWidget {
   final String text;
   final VoidCallback onTap;

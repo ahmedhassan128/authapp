@@ -12,7 +12,7 @@ class CustomTextField extends StatelessWidget {
   // add for validate
   final onSaved;
   const CustomTextField({
-    Key? key,
+    super.key,
     this.maxLines = 1,
     this.keyboardType,
     this.inputFormatters,
@@ -20,9 +20,9 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     this.validator,
     required this.hintText,
-    required Null Function(dynamic value),
+    required Null Function(dynamic value) Function,
     this.onSaved,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,7 @@ class CustomTextField extends StatelessWidget {
         decoration: InputDecoration(
             border: InputBorder.none,
             hintText: hintText,
-            fillColor: Color(0xfff3f3f4),
+            fillColor: const Color(0xfff3f3f4),
             filled: true));
   }
 }

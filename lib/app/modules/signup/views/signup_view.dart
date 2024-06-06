@@ -1,5 +1,4 @@
 import 'package:authapp/app/routes/app_pages.dart';
-import 'package:authapp/custom/colors.dart';
 import 'package:authapp/custom/custom_button.dart';
 import 'package:authapp/custom/textfield.dart';
 import 'package:flutter/material.dart';
@@ -9,25 +8,30 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/signup_controller.dart';
 
+// this is signup view page when build application show this page for register user
 class SignupView extends GetView<SignupController> {
-  const SignupView({Key? key}) : super(key: key);
+  const SignupView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        //for appbar
         title: const Text('SignupView'),
         centerTitle: true,
       ),
+      // start body from here  where we write code of view
       body: Obx(() {
         if (controller.isLoading.value) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else {
-          return Container(
+          return SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
+              // singlechildscrollview for make scrollabel page
               child: SingleChildScrollView(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
+                  // for validation
                   child: Form(
                     autovalidateMode: AutovalidateMode.onUserInteraction,
                     key: controller.formKey,
@@ -36,6 +40,7 @@ class SignupView extends GetView<SignupController> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const SizedBox(height: 20),
+                        // text field name
                         Text(
                           "Full Name",
                           style: GoogleFonts.poppins(
@@ -43,6 +48,9 @@ class SignupView extends GetView<SignupController> {
                               fontSize: 14,
                               fontWeight: FontWeight.w400),
                         ),
+                        // textfield  i have created custome textfield
+                        // apple validation on textfield
+                        // same process for all textfield
                         CustomTextField(
                           isPassword: false,
                           hintText: 'Full Name',
@@ -132,14 +140,14 @@ class SignupView extends GetView<SignupController> {
                                   TextStyle(color: Colors.black, fontSize: 14),
                             ),
                             TextButton(
+                                // if already have account move to login screen
                                 onPressed: () {
                                   Get.toNamed(Routes.LOGIN);
                                 },
                                 child: const Text(
                                   "Login",
                                   style: TextStyle(
-                                      color: MyColors.kPrimaryColor,
-                                      fontSize: 14),
+                                      color: Colors.deepPurple, fontSize: 14),
                                 ))
                           ],
                         ),

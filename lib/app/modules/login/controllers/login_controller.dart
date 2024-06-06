@@ -1,13 +1,8 @@
-import 'package:authapp/app/modules/home/controllers/home_controller.dart';
-import 'package:authapp/app/modules/home/views/home_view.dart';
 import 'package:authapp/app/routes/app_pages.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class LoginController extends GetxController {
   GlobalKey<FormState> validateform = GlobalKey<FormState>();
@@ -58,7 +53,7 @@ class LoginController extends GetxController {
 
       // Get the user's ID
       String userId = userCredential.user!.uid;
-// get user name from firestore database
+// get user name from firestore database and current user name show on home screen
       DocumentSnapshot userDoc =
           await firestore.collection('users').doc(userId).get();
       String userName = userDoc['name'];
@@ -71,6 +66,7 @@ class LoginController extends GetxController {
       // Navigate to HomeView
       //Get.offAll(() => HomeView());
       print("userName:$userName");
+      // if user login with successfully than move to homepage and show user name on home screen
       Get.offAndToNamed(Routes.HOME, parameters: {"userName": userName});
     } catch (e) {
       Get.snackbar("Login Error", e.toString(),

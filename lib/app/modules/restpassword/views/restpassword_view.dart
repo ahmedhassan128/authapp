@@ -8,7 +8,7 @@ import 'package:google_fonts/google_fonts.dart';
 import '../controllers/restpassword_controller.dart';
 
 class RestpasswordView extends GetView<RestpasswordController> {
-  const RestpasswordView({Key? key}) : super(key: key);
+  const RestpasswordView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,9 +18,9 @@ class RestpasswordView extends GetView<RestpasswordController> {
         ),
         body: Obx(() {
           if (controller.isLoading.value) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else {
-            return Container(
+            return SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               child: Padding(
@@ -50,10 +50,10 @@ class RestpasswordView extends GetView<RestpasswordController> {
                           validator: (value) {
                             return controller.validateEmail(value!);
                           }),
-                      SizedBox(
+                      const SizedBox(
                         height: 50,
                       ),
-                      Container(
+                      SizedBox(
                         width: 300,
                         height: 50,
                         child: PrimaryButton(

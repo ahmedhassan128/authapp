@@ -1,31 +1,34 @@
 import 'package:get/get.dart';
 
-import '../modules/high_trust/bindings/high_trust_binding.dart';
-import '../modules/high_trust/views/high_trust_view.dart';
+import '../modules/neutral/bindings/neutral_binding.dart';
+import '../modules/neutral/views/neutral_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
-import '../modules/low_trust/bindings/low_trust_binding.dart';
-import '../modules/low_trust/views/low_trust_view.dart';
-import '../modules/medium_trust/bindings/medium_trust_binding.dart';
-import '../modules/medium_trust/views/medium_trust_view.dart';
+import '../modules/low_stress/bindings/low_trust_binding.dart';
+import '../modules/low_stress/views/low_trust_view.dart';
+import '../modules/high_stress/bindings/high_stress_binding.dart';
+import '../modules/high_stress/views/high_stress_view.dart';
 import '../modules/restpassword/bindings/restpassword_binding.dart';
 import '../modules/restpassword/views/restpassword_view.dart';
 import '../modules/signup/bindings/signup_binding.dart';
 import '../modules/signup/views/signup_view.dart';
+import '../modules/splash/bindings/splash_binding.dart';
+import '../modules/splash/views/splash_view.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
-
+  // i set page route signup when execute application first signup page will be open
+// you can change page route according to requirement
   static const INITIAL = Routes.SIGNUP;
 
   static final routes = [
     GetPage(
       name: _Paths.HOME,
-      page: () => HomeView(),
+      page: () => const HomeView(),
       binding: HomeBinding(),
     ),
     GetPage(
@@ -45,18 +48,23 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.HIGH_TRUST,
-      page: () => const HighTrustView(),
-      binding: HighTrustBinding(),
+      page: () => const NautralView(),
+      binding: NeutralBinding(),
     ),
     GetPage(
       name: _Paths.MEDIUM_TRUST,
-      page: () => const MediumTrustView(),
-      binding: MediumTrustBinding(),
+      page: () => const HighStressView(),
+      binding: HighStressBinding(),
     ),
     GetPage(
       name: _Paths.LOW_TRUST,
-      page: () => const LowTrustView(),
-      binding: LowTrustBinding(),
+      page: () => const LowStressView(),
+      binding: LowStressBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPLASH,
+      page: () => const SplashView(),
+      binding: SplashBinding(),
     ),
   ];
 }

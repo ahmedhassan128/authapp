@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
-import '../controllers/medium_trust_controller.dart';
+import '../controllers/splash_controller.dart';
 
-class MediumTrustView extends GetView<MediumTrustController> {
-  const MediumTrustView({Key? key}) : super(key: key);
+class SplashView extends GetView<SplashController> {
+  const SplashView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('MediumTrustView'),
+        title: const Text('SplashView'),
         centerTitle: true,
       ),
-      body: Center(
+      body: const Center(
         child: Text(
-          'MediumTrustView is working',
+          'SplashView is working',
           style: TextStyle(fontSize: 20),
         ),
       ),

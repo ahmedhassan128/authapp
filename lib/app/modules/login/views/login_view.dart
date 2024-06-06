@@ -1,19 +1,16 @@
-import 'package:authapp/app/modules/restpassword/views/restpassword_view.dart';
-import 'package:authapp/app/modules/signup/views/signup_view.dart';
 import 'package:authapp/app/routes/app_pages.dart';
-import 'package:authapp/custom/colors.dart';
 import 'package:authapp/custom/custom_button.dart';
 import 'package:authapp/custom/textfield.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../controllers/login_controller.dart';
 
+// same process like signup but login code is change
 class LoginView extends GetView<LoginController> {
-  const LoginView({Key? key}) : super(key: key);
+  const LoginView({super.key});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,9 +20,9 @@ class LoginView extends GetView<LoginController> {
       ),
       body: Obx(() {
         if (controller.isLoading.value) {
-          return Center(child: CircularProgressIndicator());
+          return const Center(child: CircularProgressIndicator());
         } else {
-          return Container(
+          return SizedBox(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
               child: SingleChildScrollView(
@@ -84,7 +81,7 @@ class LoginView extends GetView<LoginController> {
                                 onPressed: () {
                                   Get.toNamed(Routes.RESTPASSWORD);
                                 },
-                                child: Text(
+                                child: const Text(
                                   "Forget Password",
                                   style: TextStyle(color: Colors.deepPurple),
                                 ))
@@ -115,8 +112,7 @@ class LoginView extends GetView<LoginController> {
                                 child: const Text(
                                   "Create one",
                                   style: TextStyle(
-                                      color: MyColors.kPrimaryColor,
-                                      fontSize: 14),
+                                      color: Colors.deepPurple, fontSize: 14),
                                 ))
                           ],
                         ),
