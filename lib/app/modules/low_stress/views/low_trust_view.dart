@@ -11,8 +11,10 @@ class LowStressView extends GetView<LowStresstController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 252, 148, 183),
       appBar: AppBar(
-        centerTitle: true,
+        elevation: 0,
+        backgroundColor: const Color.fromARGB(255, 252, 148, 183),
       ),
       body: Padding(
         padding: const EdgeInsets.only(top: 0),

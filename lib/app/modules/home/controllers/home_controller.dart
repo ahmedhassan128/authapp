@@ -1,6 +1,8 @@
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -20,10 +22,10 @@ class HomeController extends GetxController {
     userName.value = params['userName'] ?? '';
   }
 
-  void getImage() async {
+  void getImage(ImageSource source) async {
     try {
       isLoading(true);
-      final pickedFile = await _picker.pickImage(source: ImageSource.gallery);
+      final pickedFile = await _picker.pickImage(source: source);
       if (pickedFile != null) {
         selectedImagePath.value = pickedFile.path;
         await uploadImage(pickedFile.path);
@@ -87,5 +89,30 @@ class HomeController extends GetxController {
       default:
         print("Unknown class: $predictedClass");
     }
+  }
+
+  void ImagesourceDialog() {
+    Get.defaultDialog(
+        backgroundColor: const Color.fromARGB(255, 244, 76, 132),
+        title: "Select Image source",
+        content: Column(
+          children: [
+            ListTile(
+              leading: Icon(Icons.photo_outlined),
+              title: Text("Gallery"),
+              onTap: () {
+                Get.back();
+                getImage(ImageSource.gallery);
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.camera),
+              title: Text("Camera"),
+              onTap: () {
+                getImage(ImageSource.camera);
+              },
+            )
+          ],
+        ));
   }
 }

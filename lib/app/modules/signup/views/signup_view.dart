@@ -14,10 +14,12 @@ class SignupView extends GetView<SignupController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 252, 148, 183),
+
       appBar: AppBar(
+        elevation: 0,
+        backgroundColor: const Color.fromARGB(255, 252, 148, 183),
         //for appbar
-        title: const Text('SignupView'),
-        centerTitle: true,
       ),
       // start body from here  where we write code of view
       body: Obx(() {
@@ -61,6 +63,9 @@ class SignupView extends GetView<SignupController> {
                           validator: (value) {
                             return controller.validatedname(value!);
                           },
+                        ),
+                        SizedBox(
+                          height: 20,
                         ),
                         Text(
                           "Email",
@@ -122,7 +127,7 @@ class SignupView extends GetView<SignupController> {
                                 controller.passwordController.text, value!);
                           },
                         ),
-                        const SizedBox(height: 20),
+                        const SizedBox(height: 100),
                         PrimaryButton(
                           onTap: () {
                             if (controller.formKey.currentState!.validate()) {
@@ -137,7 +142,7 @@ class SignupView extends GetView<SignupController> {
                             const Text(
                               "Already have an account?",
                               style:
-                                  TextStyle(color: Colors.black, fontSize: 14),
+                                  TextStyle(color: Colors.pink, fontSize: 14),
                             ),
                             TextButton(
                                 // if already have account move to login screen
@@ -147,7 +152,7 @@ class SignupView extends GetView<SignupController> {
                                 child: const Text(
                                   "Login",
                                   style: TextStyle(
-                                      color: Colors.deepPurple, fontSize: 14),
+                                      color: Colors.pink, fontSize: 14),
                                 ))
                           ],
                         ),

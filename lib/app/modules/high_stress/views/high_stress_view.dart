@@ -12,8 +12,10 @@ class HighStressView extends GetView<HighStressController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+        elevation: 0,
+        backgroundColor: const Color.fromARGB(255, 252, 148, 183),
       ),
+      backgroundColor: const Color.fromARGB(255, 252, 148, 183),
       body: Padding(
         padding: const EdgeInsets.only(top: 0),
         child: Column(

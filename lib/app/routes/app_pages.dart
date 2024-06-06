@@ -23,7 +23,7 @@ class AppPages {
   AppPages._();
   // i set page route signup when execute application first signup page will be open
 // you can change page route according to requirement
-  static const INITIAL = Routes.SIGNUP;
+  static const INITIAL = Routes.SPLASH;
 
   static final routes = [
     GetPage(

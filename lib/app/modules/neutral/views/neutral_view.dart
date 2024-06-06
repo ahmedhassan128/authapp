@@ -12,8 +12,9 @@ class NautralView extends GetView<NeutralController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 252, 148, 183),
       ),
+      backgroundColor: const Color.fromARGB(255, 252, 148, 183),
       body: Padding(
         padding: const EdgeInsets.only(top: 0),
         child: Column(

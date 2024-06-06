@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 //////// custom class for button when need button only use custome button class
-///// button decoration , color is set in custom class not need to set 
-///// again decoration and color of button where you want to use  button 
+///// button decoration , color is set in custom class not need to set
+///// again decoration and color of button where you want to use  button
 class PrimaryButton extends StatelessWidget {
   final String text;
   final VoidCallback onTap;
@@ -14,7 +15,7 @@ class PrimaryButton extends StatelessWidget {
         onPressed: onTap,
         style: ElevatedButton.styleFrom(
             fixedSize: const Size(double.maxFinite, 53),
-            backgroundColor: const Color.fromRGBO(106, 98, 183, 1),
+            backgroundColor: Colors.pink,
             shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10))),
         child: Text(

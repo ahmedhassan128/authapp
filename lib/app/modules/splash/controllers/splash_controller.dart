@@ -1,9 +1,28 @@
+import 'dart:async';
+import 'dart:ffi';
+
+import 'package:authapp/app/routes/app_pages.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
-  //TODO: Implement SplashController
+  RxBool isloading = false.obs;
+  @override
+  void onInit() {
+    super.onInit();
+    navigateSignup();
+  }
 
-  final count = 0.obs;
-
-  void increment() => count.value++;
+  void navigateSignup() {
+    try {
+      isloading(true);
+      Future.delayed(const Duration(seconds: 3), () {
+        Get.toNamed(Routes.SIGNUP);
+      });
+    } catch (e) {
+      print("not working");
+    } finally {
+      isloading(false);
+    }
+  }
 }

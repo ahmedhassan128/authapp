@@ -14,8 +14,10 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 252, 148, 183),
       appBar: AppBar(
-        title: const Text('LoginView'),
+        elevation: 0,
+        backgroundColor: const Color.fromARGB(255, 252, 148, 183),
         centerTitle: true,
       ),
       body: Obx(() {
@@ -83,7 +85,7 @@ class LoginView extends GetView<LoginController> {
                                 },
                                 child: const Text(
                                   "Forget Password",
-                                  style: TextStyle(color: Colors.deepPurple),
+                                  style: TextStyle(color: Colors.pink),
                                 ))
                           ],
                         ),
@@ -103,7 +105,7 @@ class LoginView extends GetView<LoginController> {
                             const Text(
                               "Don't have a account?",
                               style:
-                                  TextStyle(color: Colors.black, fontSize: 14),
+                                  TextStyle(color: Colors.pink, fontSize: 14),
                             ),
                             TextButton(
                                 onPressed: () {
@@ -112,7 +114,7 @@ class LoginView extends GetView<LoginController> {
                                 child: const Text(
                                   "Create one",
                                   style: TextStyle(
-                                      color: Colors.deepPurple, fontSize: 14),
+                                      color: Colors.pink, fontSize: 14),
                                 ))
                           ],
                         ),

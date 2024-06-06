@@ -11,9 +11,10 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 252, 148, 183),
       appBar: AppBar(
-        title: const Text('HomeView'),
-        centerTitle: true,
+        elevation: 0,
+        backgroundColor: const Color.fromARGB(255, 252, 148, 183),
       ),
       body: Center(
         child: Obx(() {
@@ -32,7 +33,7 @@ class HomeView extends GetView<HomeController> {
                       style: const TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
-                        color: Colors.blue,
+                        color: Colors.pink,
                       ),
                     ),
                     const SizedBox(height: 120),
@@ -40,7 +41,9 @@ class HomeView extends GetView<HomeController> {
                       width: 300,
                       height: 200,
                       child: controller.selectedImagePath.value.isEmpty
-                          ? const Center(child: Text('No image selected'))
+                          ? const Center(
+                              child: Text('No image selected',
+                                  style: TextStyle(color: Colors.pink)))
                           : Image.file(
                               File(controller.selectedImagePath.value)),
                     ),
@@ -51,7 +54,7 @@ class HomeView extends GetView<HomeController> {
                       child: PrimaryButton(
                         text: "Select image",
                         onTap: () {
-                          controller.getImage();
+                          controller.ImagesourceDialog();
                         },
                       ),
                     ),
