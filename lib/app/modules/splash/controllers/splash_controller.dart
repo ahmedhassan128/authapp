@@ -1,8 +1,6 @@
 import 'dart:async';
-import 'dart:ffi';
 
 import 'package:authapp/app/routes/app_pages.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {

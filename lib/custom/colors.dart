@@ -31,6 +31,9 @@ class AppColors {
   static const tabSelected = Color(0xff3F9AED);
   static const border = Color(0xffDDDDE5);
   static const inputPlaceholder = Color(0xff8D9BA3);
+  static const appbarcolor = Color(0xffFBBDAC);
+  static const buttoncolor = Color(0xffED81B4);
+
   static const kFontColorPallets = [
     Color.fromRGBO(26, 31, 56, 1),
     Color.fromRGBO(72, 76, 99, 1),

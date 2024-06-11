@@ -1,4 +1,6 @@
+import 'package:authapp/app/custom_screens/custom_appbar.dart';
 import 'package:authapp/app/routes/app_pages.dart';
+import 'package:authapp/custom/colors.dart';
 import 'package:authapp/custom/custom_button.dart';
 import 'package:authapp/custom/textfield.dart';
 import 'package:flutter/material.dart';
@@ -14,115 +16,167 @@ class LoginView extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 252, 148, 183),
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: const Color.fromARGB(255, 252, 148, 183),
-        centerTitle: true,
-      ),
       body: Obx(() {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
         } else {
-          return SizedBox(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20),
-                  child: Form(
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
-                    key: controller.validateform,
+          return SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 20),
+              child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  child: SingleChildScrollView(
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        const SizedBox(height: 20),
-                        Text(
-                          "Email",
-                          style: GoogleFonts.poppins(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400),
+                        const CustomAppbar(),
+                        const SizedBox(
+                          height: 40,
                         ),
-                        CustomTextField(
-                            isPassword: false,
+                        const Center(
+                          child: Text(
+                            "Sign In!",
+                            style: TextStyle(
+                                fontSize: 30, fontWeight: FontWeight.bold),
+                          ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          child: Form(
+                            autovalidateMode:
+                                AutovalidateMode.onUserInteraction,
+                            key: controller.validateform,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                const SizedBox(height: 20),
+                                Text(
+                                  "Email",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                CustomTextField(
+                                    isPassword: false,
 
-                            // controller: _emailController,
-                            hintText: 'Email Address',
-                            controller: controller.emailController,
-                            Function: (value) {
-                              controller.email = value!;
-                            },
-                            validator: (value) {
-                              return controller.validateEmail(value!);
-                            }),
-                        const SizedBox(height: 20),
-                        Text(
-                          "Password",
-                          style: GoogleFonts.poppins(
-                              color: Colors.black,
-                              fontSize: 14,
-                              fontWeight: FontWeight.w400),
-                        ),
-                        CustomTextField(
-                          isPassword: true,
-                          controller: controller.passwordController,
-                          hintText: 'Password',
-                          Function: (value) {
-                            controller.password = value!;
-                          },
-                          validator: (value) {
-                            return controller.validatpasseword(value!);
-                          },
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            TextButton(
-                                onPressed: () {
-                                  Get.toNamed(Routes.RESTPASSWORD);
-                                },
-                                child: const Text(
-                                  "Forget Password",
-                                  style: TextStyle(color: Colors.pink),
-                                ))
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        PrimaryButton(
-                          onTap: () {
-                            if (controller.validateform.currentState!
-                                .validate()) {
-                              controller.login();
-                            }
-                          },
-                          text: "Login",
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              "Don't have a account?",
-                              style:
-                                  TextStyle(color: Colors.pink, fontSize: 14),
+                                    // controller: _emailController,
+                                    hintText: 'Email Address',
+                                    controller: controller.emailController,
+                                    onSaved: (value) {
+                                      controller.email = value!;
+                                    },
+                                    validator: (value) {
+                                      return controller.validateEmail(value!);
+                                    }),
+                                const SizedBox(height: 20),
+                                Text(
+                                  "Password",
+                                  style: GoogleFonts.poppins(
+                                      color: Colors.black,
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.w400),
+                                ),
+                                CustomTextField(
+                                  isPassword: true,
+                                  controller: controller.passwordController,
+                                  hintText: 'Password',
+                                  suffixIcon: Icons.lock,
+                                  onSaved: (value) {
+                                    controller.password = value!;
+                                  },
+                                  validator: (value) {
+                                    return controller.validatpasseword(value!);
+                                  },
+                                ),
+                                const SizedBox(height: 20),
+                                Center(
+                                  child: PrimaryButton(
+                                    onTap: () {
+                                      if (controller.validateform.currentState!
+                                          .validate()) {
+                                        controller.login();
+                                      }
+                                    },
+                                    text: "Login",
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    TextButton(
+                                        onPressed: () {
+                                          Get.toNamed(Routes.RESTPASSWORD);
+                                        },
+                                        child: const Text(
+                                          "Forget Password",
+                                          style: TextStyle(
+                                              color: Colors.pink,
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        ))
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                const Center(
+                                  child: Text(
+                                    "---------OR---------",
+                                    style: TextStyle(
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 47,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 90),
+                                  child: Column(
+                                    children: [
+                                      const Text(
+                                        "Don't have any account?",
+                                        style: TextStyle(
+                                            color: AppColors.colorBlack,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      TextButton(
+                                          onPressed: () {
+                                            Get.toNamed(Routes.SIGNUP);
+                                          },
+                                          child: const Text(
+                                            "Sign Up",
+                                            style: TextStyle(
+                                                color: Colors.pink,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold),
+                                          ))
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                            TextButton(
-                                onPressed: () {
-                                  Get.toNamed(Routes.SIGNUP);
-                                },
-                                child: const Text(
-                                  "Create one",
-                                  style: TextStyle(
-                                      color: Colors.pink, fontSize: 14),
-                                ))
-                          ],
+                          ),
+                        ),
+                        const SizedBox(
+                          height: 60,
+                        ),
+                        Container(
+                          width: 400,
+                          height: 50,
+                          color: AppColors.buttoncolor,
                         ),
                       ],
                     ),
-                  ),
-                ),
-              ));
+                  )),
+            ),
+          );
         }
       }),
     );

@@ -1,5 +1,4 @@
 import 'package:authapp/app/routes/app_pages.dart';
-import 'package:authapp/custom/custom_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -13,6 +12,15 @@ class LowStressView extends GetView<LowStresstController> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 252, 148, 183),
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Get.offAllNamed(Routes.HOME);
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Color.fromARGB(255, 152, 12, 12),
+              size: 20,
+            )),
         elevation: 0,
         backgroundColor: const Color.fromARGB(255, 252, 148, 183),
       ),

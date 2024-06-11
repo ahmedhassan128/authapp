@@ -1,5 +1,5 @@
+import 'package:authapp/custom/colors.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 //////// custom class for button when need button only use custome button class
 ///// button decoration , color is set in custom class not need to set
@@ -11,17 +11,61 @@ class PrimaryButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-        onPressed: onTap,
-        style: ElevatedButton.styleFrom(
-            fixedSize: const Size(double.maxFinite, 53),
-            backgroundColor: Colors.pink,
-            shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10))),
-        child: Text(
-          text,
-          style: GoogleFonts.poppins(
-              color: Colors.white, fontSize: 18, fontWeight: FontWeight.w600),
-        ));
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 140,
+        height: 60,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(50),
+            gradient: const LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [AppColors.appbarcolor, Color(0xffED81B4)])),
+        child: Center(
+          child: Text(
+            text,
+            style: const TextStyle(
+                color: AppColors.colorBlack,
+                fontSize: 20,
+                fontWeight: FontWeight.w900),
+          ),
+        ),
+      ),
+    );
+    // return
+  }
+}
+
+class ResetButton extends StatelessWidget {
+  final String text;
+  final VoidCallback onTap;
+  const ResetButton({super.key, required this.text, required this.onTap});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        width: 250,
+        height: 55,
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(70),
+            gradient: const LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [AppColors.appbarcolor, Color(0xffED81B4)])),
+        child: Center(
+          child: Text(
+            text,
+            style: const TextStyle(
+                color: AppColors.colorBlack,
+                fontSize: 20,
+                fontWeight: FontWeight.w900),
+          ),
+        ),
+      ),
+    );
+    // return
   }
 }

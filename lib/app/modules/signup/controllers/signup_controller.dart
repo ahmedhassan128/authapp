@@ -16,6 +16,7 @@ class SignupController extends GetxController {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   // bool? _hasBioSensor;
   RxBool isLoading = false.obs;
+  RxBool isChecked = false.obs;
 
   var email = '';
   var name = '';

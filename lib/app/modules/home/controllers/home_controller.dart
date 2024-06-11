@@ -1,19 +1,17 @@
-import 'dart:math';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:authapp/app/routes/app_pages.dart';
 
 class HomeController extends GetxController {
+  // final SuccessfulController _successfulController =
+  //     Get.find<SuccessfulController>();
   RxBool isLoading = false.obs;
   var selectedImagePath = ''.obs;
   final ImagePicker _picker = ImagePicker();
   final userName = ''.obs;
-  // final dio.Dio _dio = dio.Dio();
+  final dio.Dio _dio = dio.Dio();
 
   @override
   void onInit() {
@@ -28,7 +26,8 @@ class HomeController extends GetxController {
       final pickedFile = await _picker.pickImage(source: source);
       if (pickedFile != null) {
         selectedImagePath.value = pickedFile.path;
-        await uploadImage(pickedFile.path);
+        Get.toNamed(Routes.Successful, arguments: selectedImagePath.value);
+        //await uploadImage(pickedFile.path);
       } else {
         print("Image not selected");
       }
@@ -39,58 +38,6 @@ class HomeController extends GetxController {
     }
   }
 
-  Future<void> uploadImage(String path) async {
-    String fileName = path.split('/').last;
-
-    dio.FormData formData = dio.FormData();
-    formData.files.add(
-      MapEntry(
-        'file',
-        await dio.MultipartFile.fromFile(path, filename: fileName),
-      ),
-    );
-
-    try {
-      // // dio.Response response =
-      // //     // await _dio.post("http://localhost:8000/predict", data: formData);
-
-      //   if (response.statusCode == 200) {
-      //     print("Status Code is=${response.data}");
-      //     if (response.data != null && response.data['predicted_class'] != null) {
-      //       String predictedClass = response.data['predicted_class'];
-      //       navigateToScreen(predictedClass);
-      //     } else {
-      //       print("Error = Predicted class is not found");
-      //   //   }
-      //   }
-
-      // }else{
-      //   print("");
-      //  }
-
-      final routes = ['low_stress', 'neutral', 'high_stress'];
-      navigateToScreen(routes[Random().nextInt(3)]);
-    } catch (e) {
-      print("Some thing wrong");
-    }
-  }
-
-  void navigateToScreen(String predictedClass) {
-    switch (predictedClass) {
-      case 'low_stress':
-        Get.toNamed(Routes.LOW_TRUST);
-        break;
-      case 'neutral':
-        Get.toNamed(Routes.HIGH_TRUST);
-        break;
-      case 'high_stress':
-        Get.toNamed(Routes.MEDIUM_TRUST);
-        break;
-      default:
-        print("Unknown class: $predictedClass");
-    }
-  }
-
   void ImagesourceDialog() {
     Get.defaultDialog(
         backgroundColor: const Color.fromARGB(255, 244, 76, 132),
@@ -98,16 +45,16 @@ class HomeController extends GetxController {
         content: Column(
           children: [
             ListTile(
-              leading: Icon(Icons.photo_outlined),
-              title: Text("Gallery"),
+              leading: const Icon(Icons.photo_outlined),
+              title: const Text("Gallery"),
               onTap: () {
                 Get.back();
                 getImage(ImageSource.gallery);
               },
             ),
             ListTile(
-              leading: Icon(Icons.camera),
-              title: Text("Camera"),
+              leading: const Icon(Icons.camera),
+              title: const Text("Camera"),
               onTap: () {
                 getImage(ImageSource.camera);
               },

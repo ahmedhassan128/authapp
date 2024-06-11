@@ -19,16 +19,17 @@ class RestpasswordController extends GetxController {
     return null;
   }
 
-  void resetPassword() async {
+  resetPassword() async {
     try {
-      await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: resetemailcontroller.text);
-      Get.snackbar('Success',
-          'Password reset email sent to ${resetemailcontroller.text}');
+      final isValid = validaterestpassword.currentState!.validate();
+      if (isValid) {
+        await FirebaseAuth.instance
+            .sendPasswordResetEmail(email: resetemailcontroller.text);
+        Get.snackbar('Success',
+            'Password reset email sent to ${resetemailcontroller.text}');
 
-      // Show success message or navigate to a success screen
-      // Navigate to login screen
-      Get.toNamed(Routes.LOGIN); // Replace 'Routes.LOGIN' with your login route
+        Get.toNamed(Routes.LOGIN);
+      }
     } catch (e) {
       // Show error message
       Get.snackbar('Error', 'Failed to send password reset email: $e');

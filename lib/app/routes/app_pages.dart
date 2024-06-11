@@ -1,3 +1,6 @@
+import 'package:authapp/app/modules/login/views/await_screen.dart';
+import 'package:authapp/app/modules/successful/bindings/success_binding.dart';
+import 'package:authapp/app/modules/successful/views/success_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/neutral/bindings/neutral_binding.dart';
@@ -37,6 +40,10 @@ class AppPages {
       binding: LoginBinding(),
     ),
     GetPage(
+      name: _Paths.AwaitView,
+      page: () => const AwaitScreen(),
+    ),
+    GetPage(
       name: _Paths.SIGNUP,
       page: () => const SignupView(),
       binding: SignupBinding(),
@@ -65,6 +72,11 @@ class AppPages {
       name: _Paths.SPLASH,
       page: () => const SplashView(),
       binding: SplashBinding(),
+    ),
+    GetPage(
+      name: _Paths.Successful,
+      page: () => const SuccessfulView(),
+      binding: SuccessfulBinding(),
     ),
   ];
 }

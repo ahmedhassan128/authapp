@@ -1,5 +1,4 @@
 import 'package:authapp/app/routes/app_pages.dart';
-import 'package:authapp/custom/custom_button.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -13,6 +12,15 @@ class HighStressView extends GetView<HighStressController> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
+        leading: IconButton(
+            onPressed: () {
+              Get.offAllNamed(Routes.HOME);
+            },
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.black,
+              size: 20,
+            )),
         backgroundColor: const Color.fromARGB(255, 252, 148, 183),
       ),
       backgroundColor: const Color.fromARGB(255, 252, 148, 183),

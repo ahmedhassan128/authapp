@@ -1,3 +1,4 @@
+import 'package:authapp/app/modules/login/views/await_screen.dart';
 import 'package:authapp/app/routes/app_pages.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -65,8 +66,10 @@ class LoginController extends GetxController {
 
       // Navigate to HomeView
       //Get.offAll(() => HomeView());
-      print("userName:$userName");
+      // print("userName:$userName");
       // if user login with successfully than move to homepage and show user name on home screen
+      Get.toNamed(Routes.AwaitView);
+      await Future.delayed(Duration(seconds: 4));
       Get.offAndToNamed(Routes.HOME, parameters: {"userName": userName});
     } catch (e) {
       Get.snackbar("Login Error", e.toString(),
