@@ -69,11 +69,11 @@ class HomeView extends GetView<HomeController> {
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height * .7,
                     decoration: BoxDecoration(
-                        color: Colors.white,
+                        // color: Colors.white,
                         border: Border.all(
-                          width: 10,
-                          color: const Color.fromARGB(255, 252, 148, 183),
-                        )),
+                      width: 10,
+                      color: const Color.fromARGB(255, 252, 148, 183),
+                    )),
                     child: Padding(
                       padding: const EdgeInsets.all(10),
                       child: GridView.builder(

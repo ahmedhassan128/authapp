@@ -60,13 +60,6 @@ class LoginController extends GetxController {
 
       clear();
 
-      // Pass the user's name to HomeView controller
-      //Get.find<HomeController>().userName.value = userName;
-
-      // Navigate to HomeView
-      //Get.offAll(() => HomeView());
-      // print("userName:$userName");
-      // if user login with successfully than move to homepage and show user name on home screen
       Get.toNamed(Routes.SplashWelcome, parameters: {"userName": userName});
       await Future.delayed(const Duration(seconds: 4));
       Get.offAndToNamed(Routes.HOME, parameters: {"userName": userName});
