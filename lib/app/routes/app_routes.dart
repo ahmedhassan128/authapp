@@ -15,7 +15,7 @@ abstract class Routes {
   static const LOW_TRUST = _Paths.LOW_TRUST;
   static const SPLASH = _Paths.SPLASH;
   static const Successful = _Paths.Successful;
-  static const AwaitView = _Paths.AwaitView;
+  static const SplashWelcome = _Paths.SplashWelcome;
 }
 
 abstract class _Paths {
@@ -32,5 +32,5 @@ abstract class _Paths {
   static const LOW_TRUST = '/low-trust';
   static const SPLASH = '/splash';
   static const Successful = '/successful';
-  static const AwaitView = '/await-view';
+  static const SplashWelcome = '/splashwelcome';
 }

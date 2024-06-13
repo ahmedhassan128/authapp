@@ -1,4 +1,5 @@
-import 'package:authapp/app/modules/login/views/await_screen.dart';
+import 'package:authapp/app/modules/splash_welcom/bindings/splash_welcome_binding.dart';
+import 'package:authapp/app/modules/splash_welcom/views/splash_welcome_view.dart';
 import 'package:authapp/app/modules/successful/bindings/success_binding.dart';
 import 'package:authapp/app/modules/successful/views/success_view.dart';
 import 'package:get/get.dart';
@@ -24,9 +25,9 @@ part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
-  // i set page route signup when execute application first signup page will be open
+  // i set page route signup when execute application first SPLASH page will be open
 // you can change page route according to requirement
-  static const INITIAL = Routes.SPLASH;
+  static const INITIAL = Routes.LOGIN;
 
   static final routes = [
     GetPage(
@@ -38,10 +39,6 @@ class AppPages {
       name: _Paths.LOGIN,
       page: () => const LoginView(),
       binding: LoginBinding(),
-    ),
-    GetPage(
-      name: _Paths.AwaitView,
-      page: () => const AwaitScreen(),
     ),
     GetPage(
       name: _Paths.SIGNUP,
@@ -77,6 +74,11 @@ class AppPages {
       name: _Paths.Successful,
       page: () => const SuccessfulView(),
       binding: SuccessfulBinding(),
+    ),
+    GetPage(
+      name: _Paths.SplashWelcome,
+      page: () => const SplashWelcomeView(),
+      binding: SplashWelComeBinding(),
     ),
   ];
 }
