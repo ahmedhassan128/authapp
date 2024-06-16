@@ -19,17 +19,17 @@ class SplashWelcomeView extends GetView<SplashWelComeController> {
                       end: Alignment.bottomCenter,
                       colors: [AppColors.appbarcolor, Color(0xffED81B4)])),
               child: Padding(
-                padding: EdgeInsets.only(top: 350),
+                padding: const EdgeInsets.only(top: 350),
                 child: Column(
                   children: [
-                    Text('Welcome',
+                    const Text('Welcome',
                         style: TextStyle(
                             fontSize: 30,
                             fontWeight: FontWeight.bold,
                             color: Colors.pink)),
                     Text(
                       controller.userName.value,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 30,
                         fontWeight: FontWeight.bold,
                         color: Colors.pink,

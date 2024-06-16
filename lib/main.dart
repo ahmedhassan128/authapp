@@ -18,7 +18,7 @@ void main() async {
       // when project is connect with firebase through getxcli  routs of project
       // added by default
       debugShowCheckedModeBanner: false,
-      title: "Application",
+      title: "Application", 
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       theme: appTheme(),

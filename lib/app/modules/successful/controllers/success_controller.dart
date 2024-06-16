@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:authapp/app/routes/app_pages.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:get/get.dart';
@@ -69,9 +71,10 @@ class SuccessfulController extends GetxController {
         } else {
           print("Error: Predicted class is not found");
         }
-      } else {
-        print("Error: Unexpected response code ${response.statusCode}");
-      }
+      } else {}
+
+      // final routes = ['low_stress', 'neutral', 'high_stress'];
+      // navigateToScreen(routes[Random().nextInt(3)]);
     } catch (e) {
       print("Error: Something went wrong $e");
     }

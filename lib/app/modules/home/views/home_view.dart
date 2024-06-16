@@ -27,7 +27,7 @@ class HomeView extends GetView<HomeController> {
                     height: MediaQuery.of(context).size.height * .3,
                     child: Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 45,
                         ),
                         Text(
@@ -38,7 +38,7 @@ class HomeView extends GetView<HomeController> {
                             color: Colors.pink,
                           ),
                         ),
-                        Container(
+                        SizedBox(
                           width: 300,
                           height: 110,
                           child: controller.selectedImagePath.value.isEmpty
@@ -86,6 +86,7 @@ class HomeView extends GetView<HomeController> {
                                   mainAxisSpacing: 16),
                           itemBuilder: (BuildContext contex, int index) {
                             final imagePath = controller.imagePaths[index];
+                            return null;
 
                             // return Image.file(
                             //   // // File(imagePath),
