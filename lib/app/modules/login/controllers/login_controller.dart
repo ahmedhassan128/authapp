@@ -70,4 +70,9 @@ class LoginController extends GetxController {
       isLoading(false);
     }
   }
+
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+    Get.toNamed(Routes.LOGIN);
+  }
 }

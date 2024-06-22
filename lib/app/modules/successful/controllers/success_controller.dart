@@ -1,7 +1,7 @@
-import 'dart:math';
-
 import 'package:authapp/app/routes/app_pages.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'dart:async';
 
@@ -12,8 +12,9 @@ class SuccessfulController extends GetxController {
   Timer? _countdownTimer;
   RxInt timerCount = 18.obs;
   final dio.Dio _dio = dio.Dio();
-
+  RxString currentDateTime = ''.obs;
   String? predictedClass;
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
   void onInit() {
@@ -22,7 +23,8 @@ class SuccessfulController extends GetxController {
     final path = Get.arguments as String;
     uploadImage(path);
     startTimer();
-    // skipedButton();
+
+    skipedButton();
   }
 
   @override
@@ -65,9 +67,12 @@ class SuccessfulController extends GetxController {
       dio.Response response = await _dio
           .post("https://coupra.inovixion.com/predict", data: formData);
       if (response.statusCode == 200) {
+        currentDateTime.value = DateTime.now().toString();
+        print("current DateTime:${currentDateTime.value}");
         print("Status Code is=${response.data}");
         if (response.data != null && response.data['predicted_class'] != null) {
           predictedClass = response.data['predicted_class'];
+          saveResponseData(currentDateTime.value, predictedClass!);
         } else {
           print("Error: Predicted class is not found");
         }
@@ -101,6 +106,17 @@ class SuccessfulController extends GetxController {
       navigateToScreen(predictedClass!);
     } else {
       print("Error: Predicted class is not set");
+    }
+  }
+
+  void saveResponseData(String dateTime, String predictedClass) async {
+    try {
+      await _firestore.collection("ApiResponse").add({
+        "datetime": dateTime,
+        "predicted_class": predictedClass,
+      });
+    } catch (e) {
+      print("Please try again");
     }
   }
 }

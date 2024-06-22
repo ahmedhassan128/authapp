@@ -1,3 +1,4 @@
+import 'package:authapp/app/modules/successful/controllers/success_controller.dart';
 import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
@@ -8,8 +9,5 @@ class HomeBinding extends Bindings {
     Get.lazyPut<HomeController>(
       () => HomeController(),
     );
-    // Get.lazyPut<SuccessfulController>(
-    //   () => SuccessfulController(),
-    // );
   }
 }

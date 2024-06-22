@@ -1,16 +1,153 @@
-import 'dart:io';
+// import 'dart:io';
 
+// import 'package:intl/intl.dart';
+// import 'package:authapp/custom/custom_button.dart';
+// import 'package:flutter/material.dart';
+// import 'package:get/get.dart';
+// import '../controllers/home_controller.dart';
+
+// class HomeView extends GetView<HomeController> {
+//   HomeView({super.key});
+//   // final LoginController loginController = Get.find<LoginController>();
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       floatingActionButton: FloatingActionButton(
+//         onPressed: () {
+//           // loginController.signOut();
+//         },
+//         child: Text("Logout"),
+//       ),
+//       backgroundColor: const Color.fromARGB(255, 252, 148, 183),
+//       body: Center(
+//         child: Obx(() {
+//           if (controller.isLoading.value) {
+//             return const Center(child: CircularProgressIndicator());
+//           } else {
+//             return SizedBox(
+//               width: MediaQuery.of(context).size.width,
+//               height: MediaQuery.of(context).size.height,
+//               child: Column(
+//                 children: [
+//                   SizedBox(
+//                     width: MediaQuery.of(context).size.width,
+//                     height: MediaQuery.of(context).size.height * .3,
+//                     child: Column(
+//                       children: [
+//                         const SizedBox(
+//                           height: 45,
+//                         ),
+//                         Text(
+//                           controller.userName.value,
+//                           style: const TextStyle(
+//                             fontSize: 30,
+//                             fontWeight: FontWeight.bold,
+//                             color: Colors.pink,
+//                           ),
+//                         ),
+//                         SizedBox(
+//                           width: 300,
+//                           height: 110,
+//                           child: controller.selectedImagePath.value.isEmpty
+//                               ? const Center(
+//                                   child: Text('No image selected',
+//                                       style: TextStyle(color: Colors.pink)))
+//                               : Image.file(
+//                                   File(
+//                                     controller.selectedImagePath.value,
+//                                   ),
+//                                   fit: BoxFit.cover,
+//                                 ),
+//                         ),
+//                         SizedBox(
+//                           width: 200,
+//                           height: 42,
+//                           child: PrimaryButton(
+//                             text: "Select image",
+//                             onTap: () {
+//                               controller.ImagesourceDialog();
+//                             },
+//                           ),
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                   // Obx(() =>
+//                   Container(
+//                     width: MediaQuery.of(context).size.width,
+//                     height: MediaQuery.of(context).size.height * .7,
+//                     color: Colors.white,
+//                     child: ListView.builder(
+//                         itemCount: controller.contactList.length,
+//                         itemBuilder: (context, index) {
+//                           final listdata = controller.contactList[index];
+//                           String datetime =
+//                               listdata['datetime'] ?? 'No datetime';
+//                           DateTime parsedDate;
+//                           String formattedDate = 'Invalid date';
+
+//                           try {
+//                             parsedDate = DateTime.parse(datetime);
+//                             formattedDate = DateFormat('yyyy-MM-dd HH:mm:ss')
+//                                 .format(parsedDate);
+//                           } catch (e) {
+//                             print('Error parsing date: $e');
+//                           }
+//                           return ListView(
+//                             children:<Widget> [
+//                               DataTable(
+//                                 columns: [
+//                                 DataColumn(
+//                                     label: Text('ID',
+//                                         style: TextStyle(
+//                                             fontSize: 18,
+//                                             fontWeight: FontWeight.bold))),
+//                                 DataColumn(
+//                                     label: Text('Screens',
+//                                         style: TextStyle(
+//                                             fontSize: 18,
+//                                             fontWeight: FontWeight.bold))),
+//                                 DataColumn(
+//                                     label: Text('Date+Time',
+//                                         style: TextStyle(
+//                                             fontSize: 18,
+//                                             fontWeight: FontWeight.bold))),
+//                               ], rows: [])
+//                             ],
+//                           );
+
+//                         }),
+//                   )
+
+//                 ],
+//               ),
+//             );
+//           }
+//         }),
+//       ),
+//     );
+//   }
+// }
+import 'dart:io';
+import 'package:authapp/app/modules/login/controllers/login_controller.dart';
+import 'package:intl/intl.dart';
 import 'package:authapp/custom/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
-  const HomeView({super.key});
-
+  HomeView({super.key});
+  final LoginController loginController = Get.find<LoginController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          loginController.signOut();
+        },
+        child: Text("Logout"),
+      ),
       backgroundColor: const Color.fromARGB(255, 252, 148, 183),
       body: Center(
         child: Obx(() {
@@ -54,7 +191,7 @@ class HomeView extends GetView<HomeController> {
                         ),
                         SizedBox(
                           width: 200,
-                          height: 45,
+                          height: 42,
                           child: PrimaryButton(
                             text: "Select image",
                             onTap: () {
@@ -65,34 +202,68 @@ class HomeView extends GetView<HomeController> {
                       ],
                     ),
                   ),
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height * .7,
-                    decoration: BoxDecoration(
-                        // color: Colors.white,
-                        border: Border.all(
-                      width: 10,
-                      color: const Color.fromARGB(255, 252, 148, 183),
-                    )),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: GridView.builder(
-                          scrollDirection: Axis.vertical,
-                          itemCount: controller.imagePaths.length,
-                          gridDelegate:
-                              const SliverGridDelegateWithMaxCrossAxisExtent(
-                                  maxCrossAxisExtent: 300,
-                                  crossAxisSpacing: 16,
-                                  mainAxisSpacing: 16),
-                          itemBuilder: (BuildContext contex, int index) {
-                            final imagePath = controller.imagePaths[index];
-                            return null;
+                  Expanded(
+                    child: Container(
+                      width: MediaQuery.of(context).size.width,
+                      color: Colors.white,
+                      child: SingleChildScrollView(
+                        child: DataTable(
+                          columns: [
+                            DataColumn(
+                              label: Text(
+                                'ID',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            DataColumn(
+                              label: Text(
+                                'Date+Time',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            DataColumn(
+                              label: Text(
+                                'Response',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                          ],
+                          rows: List<DataRow>.generate(
+                            controller.contactList.length,
+                            (index) {
+                              final listdata = controller.contactList[index];
+                              String datetime =
+                                  listdata['datetime'] ?? 'No datetime';
+                              String formattedDate = 'Invalid date';
 
-                            // return Image.file(
-                            //   // // File(imagePath),
-                            //   // fit: BoxFit.cover,
-                            // );
-                          }),
+                              try {
+                                DateTime parsedDate = DateTime.parse(datetime);
+                                formattedDate =
+                                    DateFormat('yyyy-MM-dd HH:mm:ss')
+                                        .format(parsedDate);
+                              } catch (e) {
+                                print('Error parsing date: $e');
+                              }
+
+                              return DataRow(cells: [
+                                DataCell(Text((index + 1).toString())),
+                                DataCell(Text(formattedDate)),
+                                DataCell(Text(
+                                    listdata['predicted_class'] ?? 'No class')),
+                              ]);
+                            },
+                          ),
+                        ),
+                      ),
                     ),
                   ),
                 ],
