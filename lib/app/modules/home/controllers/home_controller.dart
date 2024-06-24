@@ -1,6 +1,7 @@
 import 'package:authapp/app/modules/successful/controllers/success_controller.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart' as dio;
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,20 +10,22 @@ import 'package:authapp/app/routes/app_pages.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class HomeController extends GetxController {
+  FirebaseAuth auth = FirebaseAuth.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
   RxBool isLoading = false.obs;
   //////////////change here
   var selectedImagePath = ''.obs;
   RxList<String> imagePaths = <String>[].obs;
   RxList<Map<String, dynamic>> contactList = <Map<String, dynamic>>[].obs;
-  FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   final ImagePicker _picker = ImagePicker();
   final userName = ''.obs;
   final dio.Dio _dio = dio.Dio();
   final _selectedImagePathKey = 'selectedImagePaths';
   @override
   void onInit() {
-    super.onInit();
-    fetchResponseApi();
+    fetchResponseApi(userId);
+
     final params = Get.parameters;
     userName.value = params['userName'] ?? '';
     // if (Get.arguments != null && Get.arguments is List<Map<String, dynamic>>) {
@@ -32,19 +35,19 @@ class HomeController extends GetxController {
     // loadSelectedImagePaths();
   }
 
-  Future<void> loadSelectedImagePaths() async {
-    final prefs = await SharedPreferences.getInstance();
-    final List<String>? savedImagePaths =
-        prefs.getStringList(_selectedImagePathKey);
-    if (savedImagePaths != null) {
-      imagePaths.addAll(savedImagePaths);
-    }
-  }
+  // Future<void> loadSelectedImagePaths() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   final List<String>? savedImagePaths =
+  //       prefs.getStringList(_selectedImagePathKey);
+  //   if (savedImagePaths != null) {
+  //     imagePaths.addAll(savedImagePaths);
+  //   }
+  // }
 
-  Future<void> saveSelectedImagePaths() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setStringList(_selectedImagePathKey, imagePaths.toList());
-  }
+  // Future<void> saveSelectedImagePaths() async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   await prefs.setStringList(_selectedImagePathKey, imagePaths.toList());
+  // }
 
   void getImage(ImageSource source) async {
     try {
@@ -93,11 +96,14 @@ class HomeController extends GetxController {
         ));
   }
 
-  Future<void> fetchResponseApi() async {
+  String userId = FirebaseAuth.instance.currentUser!.uid;
+  Future<void> fetchResponseApi(String userId) async {
     try {
       isLoading(true);
-      QuerySnapshot querySnapshot =
-          await _firebaseFirestore.collection('ApiResponse').get();
+      QuerySnapshot querySnapshot = await _firebaseFirestore
+          .collection('ApiResponse')
+          .where("UserId", isEqualTo: userId)
+          .get();
       List<Map<String, dynamic>> fetchedList = querySnapshot.docs
           .map((doc) => doc.data() as Map<String, dynamic>)
           .toList();
@@ -108,5 +114,10 @@ class HomeController extends GetxController {
       print("Error fetching contacts: $e");
       isLoading(false);
     }
+  }
+
+  Future<void> signOut() async {
+    await FirebaseAuth.instance.signOut();
+    Get.offAllNamed(Routes.LOGIN);
   }
 }

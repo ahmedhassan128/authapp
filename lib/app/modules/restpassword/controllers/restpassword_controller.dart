@@ -5,7 +5,7 @@ import 'package:get/get.dart';
 
 class RestpasswordController extends GetxController {
   TextEditingController resetemailcontroller = TextEditingController();
-  GlobalKey<FormState> validaterestpassword = GlobalKey<FormState>();
+  final GlobalKey<FormState> validaterestpassword = GlobalKey<FormState>();
   FirebaseAuth auth = FirebaseAuth.instance;
   RxBool isLoading = false.obs;
   var restemail = '';

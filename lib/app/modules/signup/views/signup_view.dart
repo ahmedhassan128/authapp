@@ -33,7 +33,7 @@ class SignupView extends GetView<SignupController> {
                       children: [
                         const CustomAppbar(),
                         const SizedBox(
-                          height: 20,
+                          height: 16,
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -224,7 +224,7 @@ class SignupView extends GetView<SignupController> {
                         ),
                         Container(
                           width: 400,
-                          height: 50,
+                          height: 45,
                           color: AppColors.buttoncolor,
                         ),
                       ],

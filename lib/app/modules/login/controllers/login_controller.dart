@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class LoginController extends GetxController {
-  GlobalKey<FormState> validateform = GlobalKey<FormState>();
+  final GlobalKey<FormState> loginFormValidation = GlobalKey<FormState>();
   final passwordController = TextEditingController();
   final emailController = TextEditingController();
 
@@ -40,7 +40,7 @@ class LoginController extends GetxController {
   }
 
   Future<void> login() async {
-    if (!validateform.currentState!.validate()) {
+    if (!loginFormValidation.currentState!.validate()) {
       return;
     }
 
@@ -69,10 +69,5 @@ class LoginController extends GetxController {
     } finally {
       isLoading(false);
     }
-  }
-
-  Future<void> signOut() async {
-    await FirebaseAuth.instance.signOut();
-    Get.toNamed(Routes.LOGIN);
   }
 }

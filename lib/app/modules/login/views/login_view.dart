@@ -45,7 +45,7 @@ class LoginView extends GetView<LoginController> {
                           child: Form(
                             autovalidateMode:
                                 AutovalidateMode.onUserInteraction,
-                            key: controller.validateform,
+                            key: controller.loginFormValidation,
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -94,7 +94,8 @@ class LoginView extends GetView<LoginController> {
                                 Center(
                                   child: PrimaryButton(
                                     onTap: () {
-                                      if (controller.validateform.currentState!
+                                      if (controller
+                                          .loginFormValidation.currentState!
                                           .validate()) {
                                         controller.login();
                                       }
@@ -169,7 +170,7 @@ class LoginView extends GetView<LoginController> {
                         ),
                         Container(
                           width: 400,
-                          height: 50,
+                          height: 45,
                           color: AppColors.buttoncolor,
                         ),
                       ],

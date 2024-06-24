@@ -1,7 +1,8 @@
 import 'package:authapp/app/routes/app_pages.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dio/dio.dart' as dio;
-import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'dart:async';
 
@@ -68,8 +69,8 @@ class SuccessfulController extends GetxController {
           .post("https://coupra.inovixion.com/predict", data: formData);
       if (response.statusCode == 200) {
         currentDateTime.value = DateTime.now().toString();
-        print("current DateTime:${currentDateTime.value}");
-        print("Status Code is=${response.data}");
+        // print("current DateTime:${currentDateTime.value}");
+        // print("Status Code is=${response.data}");
         if (response.data != null && response.data['predicted_class'] != null) {
           predictedClass = response.data['predicted_class'];
           saveResponseData(currentDateTime.value, predictedClass!);
@@ -112,6 +113,7 @@ class SuccessfulController extends GetxController {
   void saveResponseData(String dateTime, String predictedClass) async {
     try {
       await _firestore.collection("ApiResponse").add({
+        "UserId": FirebaseAuth.instance.currentUser?.uid,
         "datetime": dateTime,
         "predicted_class": predictedClass,
       });
